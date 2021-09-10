@@ -50,6 +50,7 @@ def difficulty_selector():
 	# lolol you thought
 	global difficulty_user
 	difficulty_user = input(">> ").upper()
+	print()
 	print(f"You have chosen {difficulty_user}")
 	if difficulty_user == "E": 
 		amount_of_cards += 5
@@ -63,7 +64,6 @@ def difficulty_selector():
 
 # Main menu
 def main(): 
-	print()
 	print("Would you like to: ")
 	print()
 	print("1  Play the game")
@@ -74,17 +74,89 @@ def main():
 	selection = intchecker(">> ")
 	if selection == 1: 
 		print("\nStarting the game...")
-		print()
 		difficulty_selector()
+		
 		global ai_list
 		global cards
+		global points
+		
+		#  Game Variables
 		ai_list = []
-		cards = ["ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king"]
-		print(amount_of_cards)
+		cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+		points = 0
+
 		while len(ai_list) != amount_of_cards: 
 			gen = random.choice(cards) 
 			ai_list.append(gen)
-		print(ai_list)
+		
+		print()
+		print(f"Your first card is {ai_list[0]}.\n")
+		print("Do you wish to go higher or lower?")
+		print()
+		
+		user_guess = input(">> ").upper()
+
+		if user_guess[0] == "H": 
+			if ai_list[0] < ai_list[1]: 
+				print()
+				print("Correct!")
+				points += 1
+			elif ai_list[0] > ai_list[1]: 
+				print()
+				print("Wrong!")
+				print()
+				print("Returning to menu...")
+				print()
+				main()
+		if user_guess[0] == "L": 
+			if ai_list[0] > ai_list[1]: 
+				print()
+				print("Correct!")
+				points += 1
+			elif ai_list[0] < ai_list[1]: 
+				print()
+				print("Wrong!")
+				print()
+				print("Returning to menu...")
+				print()
+				main()
+	
+		print()
+		print(f"Your second card is {ai_list[1]}.\n")
+		print("Do you wish to go higher or lower?")
+		print()
+		
+		user_guess = input(">> ").upper()
+
+		if user_guess[0] == "H": 
+			if ai_list[1] < ai_list[2]: 
+				print()
+				print("Correct!")
+				points += 1
+			elif ai_list[1] > ai_list[2]: 
+				print()
+				print("Wrong!")
+				print()
+				print(f"You had {points} points.")
+				print()
+				print("Returning to menu...")
+				print()
+				main()
+		if user_guess[0] == "L": 
+			if ai_list[1] > ai_list[2]: 
+				print()
+				print("Correct!")
+				points += 1
+			elif ai_list[1] < ai_list[2]: 
+				print()
+				print("Wrong!")
+				print()
+				print(f"You had {points} points.")
+				print()
+				print("Returning to menu...")
+				print()
+				main()
+
 	elif selection == 2: 
 		quit()
 	
@@ -97,8 +169,6 @@ print("Welcome to the higher lower game!")
 print("Created by Shaun Reynolds 2/08/2021")
 print()
 print("-" * 70)
-print()
-print("-" * 70)	
 print()
 print("HOW TO PLAY:")
 print()
