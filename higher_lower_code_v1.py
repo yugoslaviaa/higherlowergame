@@ -90,7 +90,7 @@ def main():
         points = 0
         i = 0
 
-        while len(ai_list) != amount_of_cards:
+        while len(ai_list) != diff_number:
             gen = random.choice(cards)
             ai_list.append(gen)
 
@@ -100,7 +100,7 @@ def main():
         print()
 
         user_guess = input(">> ").upper()
-        while i != amount_of_cards:
+        while i != diff_number:
             if user_guess[0] == "H":
                 if ai_list[i] < ai_list[i + 1]:
                     print()
@@ -167,5 +167,5 @@ print()
 while menu != True: 
 	menu = main()
 
-if menu = True: 
+if menu == True: 
 	main()
