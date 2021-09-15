@@ -6,7 +6,7 @@ def intchecker(number):
     ''' '''
     valid = False
     while not valid:
-        error = "Whoops! Please enter a valid option. (1, 2, or 3 if on main menu)"
+        error = "Whoops! Please enter a valid number."
         try:
             response = int(input(number))
             if response:
@@ -20,10 +20,9 @@ def intchecker(number):
 
 
 def quit():
-    print()
-    print("Are you sure you wish to exit? (1 for yes, 2 for no)")
-    print()
+    print("\nAre you sure you wish to exit? (1 for yes, 2 for no)\n")
     confirmation = intchecker(">> ")
+
     if confirmation == 1:
         print("\nQuitting game..")
         print()
@@ -37,7 +36,7 @@ def quit():
 
 
 # difficulty selection function
-def difficulty_selector():
+def diff_selector():
     ''' '''
     global amount_of_cards
     amount_of_cards = 0
@@ -78,7 +77,7 @@ def main():
     if selection == 1:
         print("\nStarting the game...")
         
-				diff_number = difficulty_selector()
+				diff_number = diff_selector()
 
         global ai_list
         global cards
@@ -156,16 +155,13 @@ print("HOW TO PLAY:")
 print()
 print("The computer will generate a random number between 1 and 13.")
 print(
-    "Your job is to guess whether or not the next number the computer chooses is higher or lower."
-)
+    "Your job is to guess whether or not the next number the computer chooses is 
+		"higher or lower.")
 print("If you guess right, you get to keep playing.")
 print("If you guess wrong, you lose and have to start over.")
 print()
 print("-" * 70)
 print()
 
-while menu != True: 
+while menu != False: 
 	menu = main()
-
-if menu == True: 
-	main()
