@@ -50,7 +50,7 @@ def diff_selector():
     my_secret = os.environ['secret_difficulty']
     # lolol you thought
     global difficulty_user
-    difficulty_user = input(">> ").upper()
+    difficulty_user = input(">> ").strip().upper()
     print()
     print(f"You have chosen {difficulty_user}")
     if difficulty_user == "E":
@@ -66,6 +66,7 @@ def diff_selector():
 
 # Main menu
 def main():
+    '''doc string'''
     print("Would you like to: ")
     print()
     print("1  Play the game")
@@ -76,8 +77,7 @@ def main():
     selection = intchecker(">> ")
     if selection == 1:
         print("\nStarting the game...")
-        
-				diff_number = diff_selector()
+        diff_number = diff_selector()
 
         global ai_list
         global cards
@@ -92,15 +92,15 @@ def main():
         while len(ai_list) != diff_number:
             gen = random.choice(cards)
             ai_list.append(gen)
+        print(ai_list)
 
-        print()
-        print(f"Your card is {ai_list[i]}.\n")
-        print("Do you wish to go higher or lower?")
-        print()
-
-        user_guess = input(">> ").upper()
-        while i != diff_number:
-            if user_guess[0] == "H":
+        while i < diff_number - 1:
+            print()
+            print(f"Your card is {ai_list[i]}.\n")
+            print("Do you wish to go higher or lower?")
+            print()
+            user_guess = input(">> ").strip().upper()
+            if user_guess[0] == 'H':
                 if ai_list[i] < ai_list[i + 1]:
                     print()
                     print("Correct!")
@@ -112,7 +112,7 @@ def main():
                     print(f"You had {points} points.")
                     print()
                     return False
-           	if user_guess[0] == "L":
+            if user_guess[0] == 'L':
                 if ai_list[i] > ai_list[i + 1]:
                     print()
                     print("Correct!")
@@ -124,20 +124,23 @@ def main():
                     print(f"You had {points} points.")
                     print()
                     return False
-      print("\nCongratulations! You won.")
-      print()
-      print(f"You have {points} points.")
-      print()
-  	  print("Do you wish to play again? (Y/N)")
-      print()
-      retry = input(">> ").upper()
-      if retry[0] == "Y":
-          return True
-      elif retry[0] == "N":
-          quit()
-      else:
-          print("\nAssuming what you meant is quit then.")
-          quit()
+            i += 1
+
+        print('Congratulations you won')
+        print("\nCongratulations! You won.")
+        print()
+        print(f"You have {points} points.")
+        print()
+        print("Do you wish to play again? (Y/N)")
+        print()
+        retry = input(">> ").upper()
+        if retry[0] == 'Y':
+            return True
+        elif retry[0] == 'N':
+            quit()
+        else:
+            print("\nAssuming what you meant is quit then.")
+            quit()
 
     elif selection == 2:
         quit()
@@ -155,13 +158,14 @@ print("HOW TO PLAY:")
 print()
 print("The computer will generate a random number between 1 and 13.")
 print(
-    "Your job is to guess whether or not the next number the computer chooses is 
-		"higher or lower.")
+    "Your job is to guess whether or not the next number the computer chooses is"
+    "higher or lower.")
 print("If you guess right, you get to keep playing.")
 print("If you guess wrong, you lose and have to start over.")
 print()
 print("-" * 70)
 print()
 
-while menu != False: 
-	menu = main()
+menu = True
+while menu != False:
+    menu = main()
